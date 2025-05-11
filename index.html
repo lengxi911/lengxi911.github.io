@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+	<title>TINGYU | 听雨</title>
+	<meta name="description" content="tingyu.">
+	<meta name="keywords" content="tingyu, 听雨">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="shortcut icon" href="/asset/icon64.png"> -->
+    <style>
+        /* 确保视频全屏并覆盖整个视口 */
+        #fullscreen-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* 保持视频比例并覆盖整个区域 */
+            z-index: -1; /* 放在内容下方 */
+        }
+ 
+        /* 可选：添加内容层样式 */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+	<div class="wrapper-0">
+		<p>TINGYU | 听雨</p>
+	</div>
+    <!-- 隐藏的音频元素 -->
+    <audio id="backgroundAudio" loop autoplay>
+        <source src="./css/audio.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放
+    </audio>
+ 
+    <script>
+        // 兼容性处理：部分浏览器需要用户交互后才能自动播放
+        document.addEventListener('click', function autoPlay() {
+            const audio = document.getElementById('backgroundAudio');
+            audio.play().catch(error => {
+                console.log('自动播放被阻止，需要用户交互');
+                // 可在此处添加手动播放按钮
+            });
+            document.removeEventListener('click', autoPlay); // 移除监听
+        });
+    </script>
+
+    <!-- 视频容器 -->
+    <video id="fullscreen-video" autoplay muted loop playsinline>
+        <source src="./css/rain2.mp4" type="video/mp4">
+        <!-- 浏览器不支持时的备用内容 -->
+        您的浏览器不支持视频标签
+    </video>
+</body>
+</html>
